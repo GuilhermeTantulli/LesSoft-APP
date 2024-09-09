@@ -1,11 +1,25 @@
 // screens/SettingsScreen.js
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 
-const SettingsScreen = () => {
+const SettingsScreen = ({ navigation }) => {
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('authToken');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Login' }],
+      });
+    } catch (error) {
+      console.error(error);
+      // Handle logout error
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Settings Screen</Text>
+      <Button title="Logout" onPress={handleLogout} />
     </View>
   );
 };
