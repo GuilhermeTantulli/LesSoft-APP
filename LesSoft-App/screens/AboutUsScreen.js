@@ -1,23 +1,23 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 const AboutUsScreen = () => {
   return (
     <View style={styles.container}>
-      
-      {/* Imagem no topo */}
-      <View style={styles.iconContainer}>
+      {/* Tarja no topo igual à HomeScreen */}
+      <View style={styles.banner}>
         <Image
-          source={require('../assets/LesSoft-logo-no-text.png')} // Caminho para o seu arquivo
+          source={require('../assets/LesSoft-logo-no-text.png')}
           style={styles.icon}
         />
+        <Text style={styles.bannerText}>Quem Somos?</Text>
       </View>
-      
+
       {/* Banners de introdução */}
       <View style={styles.bannerWrapper}>
         <Text style={styles.plusoftBannerTitle}>Sobre a Plusoft</Text>
         <View style={styles.plusoftBannersContainer}>
-          <Text style={styles.bannerText}>
+          <Text style={styles.bannerTextContent}>
             Nossas soluções em tecnologia focam em melhorar a experiência dos clientes e otimizar processos empresariais.
           </Text>
         </View>
@@ -27,33 +27,37 @@ const AboutUsScreen = () => {
       <View style={styles.bannerWrapper}>
         <Text style={styles.lessoftBannerTitle}>O que é a LesSoft?</Text>
         <View style={styles.lessoftBannersContainer}>
-          <Text style={styles.bannerText}>
+          <Text style={styles.bannerTextContent}>
             A LesSoft é a nossa mais recente oferta, projetada para fornecer ferramentas avançadas para gestão de dados e automação.
           </Text>
         </View>
       </View>
-
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#333',
-    padding: 16,
+  container: { 
+    flex: 1, 
+    backgroundColor: '#333' 
   },
-  iconContainer: {
+  banner: {
+    width: '100%',
+    backgroundColor: '#222227', // Cor da tarja
     alignItems: 'center',
-    marginVertical: 16,
+    paddingVertical: 20, // Ajusta a altura da tarja
+    marginTop: 30,
+    marginBottom: 150, // Espaço abaixo da tarja
+  },
+  bannerText: {
+    color: '#fff',
+    fontSize: 22, // Tamanho igual ao da HomeScreen
+    marginTop: 10,
+    textAlign: 'center',
   },
   icon: {
-    width: 14,  // Ajuste conforme o tamanho da imagem
-    height: 13, // Ajuste conforme o tamanho da imagem
-    marginTop: 20,
-  },
-  bannerWrapper: {
-    marginBottom: 20,  // Espaçamento inferior aumentado
+    width: 14,
+    height: 13,
   },
   plusoftBannerTitle: {
     fontSize: 18,
@@ -63,34 +67,37 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   plusoftBannersContainer: {
-    width: '100%',
+    width: '86%', // Largura ajustada semelhante aos números importantes
     height: 100,
     backgroundColor: '#fff',
     justifyContent: 'center',
     paddingHorizontal: 16,
     borderRadius: 8,
+    marginBottom: 20,
+    alignSelf: 'center', // Centraliza o banner
   },
   lessoftBannerTitle: {
     fontSize: 18,
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
-
     marginBottom: 10,
   },
   lessoftBannersContainer: {
-    width: '100%',
+    width: '86%', // Largura ajustada semelhante aos números importantes
     height: 100,
     backgroundColor: '#fff',
     justifyContent: 'center',
     paddingHorizontal: 16,
     borderRadius: 8,
+    alignSelf: 'center', // Centraliza o banner
   },
-  bannerText: {
-    fontSize: 16,
+  bannerTextContent: {
+    fontSize: 16, // Tamanho do texto nas descrições dos banners
     color: '#333',
     textAlign: 'center',
   },
 });
+
 
 export default AboutUsScreen;

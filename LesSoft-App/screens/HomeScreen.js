@@ -26,69 +26,82 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      
-      {/* Imagem no topo */}
-      <View style={styles.iconContainer}>
+      <View style={styles.banner}>
         <Image
-          source={require('../assets/LesSoft-logo-no-text.png')} // Caminho para o seu arquivo
+          source={require('../assets/LesSoft-logo-no-text.png')}
           style={styles.icon}
         />
+        <Text style={styles.bannerText}>Alguns números da Plusoft</Text>
       </View>
-      
-      {/* Carrossel */}
-      <View style={styles.carouselContainer}>
-        <Text style={styles.carouselTitle}>Temos um time de especialistas que domina o seu negócio</Text>
-        <Carousel
-          loop
-          autoPlay
-          autoPlayInterval={3000}
-          width={windowWidth - 32} // Adiciona margem de 16 de cada lado
-          height={200}
-          data={carouselItems}
-          renderItem={renderCarouselItem}
-          scrollAnimationDuration={1000}
-          pagingEnabled
-        />
-      </View>
-
-      {/* Números importantes */}
-      <View style={styles.statsBanner}>
-        <View style={styles.stat}>
-          <Text style={styles.statNumber}>+240</Text>
-          <Text style={styles.statText}>Clientes espalhados por mais de 20 estados e municípios do país</Text>
-        </View>
-        <View style={styles.stat}>
-          <Text style={styles.statNumber}>+140 milhões</Text>
-          <Text style={styles.statText}>De interações com chatbots</Text>
-        </View>
-        <View style={styles.stat}>
-          <Text style={styles.statNumber}>+320 milhões</Text>
-          <Text style={styles.statText}>de atendimentos registrados na nossa plataforma de CRM/ano</Text>
-        </View>
-        <View style={styles.stat}>
-          <Text style={styles.statNumber}>+80</Text>
-          <Text style={styles.statText}>Prêmios a empresa mais premiada do Brasil</Text>
-        </View>
-      </View>
-
+      <View style={styles.carouselWrapper}>
+        
     </View>
+
+{/* Carrossel */}
+<View style={styles.carouselContainer}>
+  <Text style={styles.carouselTitle}>Temos um time de especialistas que domina o seu negócio</Text>
+  <Carousel
+    loop
+    autoPlay
+    autoPlayInterval={3000}
+    width={windowWidth - 32} // Adiciona margem de 16 de cada lado
+    height={200}
+    data={carouselItems}
+    renderItem={renderCarouselItem}
+    scrollAnimationDuration={1000}
+    pagingEnabled
+    customConfig={{
+      itemSpacing: 20, // Espaço entre os itens do carrossel
+    }}
+  />
+</View>
+
+{/* Números importantes */}
+<View style={styles.statsBanner}>
+  <View style={styles.stat}>
+    <Text style={styles.statNumber}>+240</Text>
+    <Text style={styles.statText}>Clientes espalhados por mais de 20 estados e municípios do país</Text>
+  </View>
+  <View style={styles.stat}>
+    <Text style={styles.statNumber}>+140 milhões</Text>
+    <Text style={styles.statText}>De interações com chatbots</Text>
+  </View>
+  <View style={styles.stat}>
+    <Text style={styles.statNumber}>+320 milhões</Text>
+    <Text style={styles.statText}>de atendimentos registrados na nossa plataforma de CRM/ano</Text>
+  </View>
+  <View style={styles.stat}>
+    <Text style={styles.statNumber}>+80</Text>
+    <Text style={styles.statText}>Prêmios a empresa mais premiada do Brasil</Text>
+  </View>
+</View>
+
+</View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#333',
-    padding: 16,
+  container: { 
+    flex: 1, 
+    backgroundColor: '#333' 
   },
-  iconContainer: {
+  banner: {
+    width: '100%',
+    backgroundColor: '#222227', // Cor da tarja
     alignItems: 'center',
-    marginVertical: 16,
+    paddingVertical: 20, // Ajusta a altura da tarja
+    marginTop: 30,
+    marginBottom: 150, // Espaço abaixo da tarja
+  },
+  bannerText: {
+    color: '#fff',
+    fontSize: 22,
+    marginTop: 10,
+    textAlign: 'center',
   },
   icon: {
-    width: 14,  // Ajuste conforme o tamanho da imagem
-    height: 13, // Ajuste conforme o tamanho da imagem
-    marginTop: 20,
+    width: 14,
+    height: 13,
   },
   carouselContainer: {
     marginBottom: 120,  // Espaçamento adicional para evitar sobreposição
@@ -108,6 +121,7 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal: 10, // Adiciona espaço horizontal entre os itens do carrossel
   },
   carouselItemText: {
     color: '#333',
@@ -120,6 +134,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     marginBottom: 20,
+    paddingHorizontal: 16, // Alinha os números com a margem do carrossel
   },
   stat: {
     width: '48%',
@@ -141,4 +156,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 export default HomeScreen;
+
+
