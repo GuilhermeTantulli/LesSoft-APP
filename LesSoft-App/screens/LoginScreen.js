@@ -1,4 +1,3 @@
-// screens/LoginScreen.js
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, { useState } from 'react';
