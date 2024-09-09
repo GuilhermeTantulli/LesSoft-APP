@@ -1,62 +1,37 @@
-// screens/LoginScreen.js
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-// Atualize o caminho da imagem de acordo com sua estrutura de pastas
 const logo = require('../assets/LesSoft-logo.png');
 
 const LoginScreen = ({ navigation }) => {
+  // Estados para armazenar usuário, senha e mensagem de erro
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async () => {
-    setErrorMessage('');
+    setErrorMessage(''); // Reseta a mensagem de erro
 
-    if (!user && !password) {
-      setErrorMessage('Credenciais vazias');
-      return;
-    }
-    
-    if (!user) {
-      setErrorMessage('Usuário inválido');
-      return;
-    }
+    // Validação simples das credenciais
+    if (user === 'teste' && password === 'teste123') {
+      try {
+        // Simula um token de autenticação
+        const token = 'mockedAuthToken';
 
-    if (!password) {
-      setErrorMessage('Senha inválida');
-      return;
-    }
+        // Salva o token no AsyncStorage
+        await AsyncStorage.setItem('authToken', token);
 
-    try {
-      const response = await axios.post('https://your-api-endpoint.com/login', { user, password });
-      const { token } = response.data;
-
-      if (!token) {
-        setErrorMessage('Usuário incorreto');
-        return;
+        // Navegar para a tela principal
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'App' }],
+        });
+      } catch (error) {
+        console.error('Erro ao salvar o token', error);
       }
-
-      await AsyncStorage.setItem('authToken', token);
-
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'App' }],
-      });
-    } catch (error) {
-      if (error.response) {
-        if (error.response.status === 404) {
-          setErrorMessage('Usuário não encontrado');
-        } else if (error.response.status === 401) {
-          setErrorMessage('Senha incorreta');
-        } else {
-          setErrorMessage('Erro ao fazer login');
-        }
-      } else {
-        setErrorMessage('Erro ao conectar com o servidor');
-      }
+    } else {
+      setErrorMessage('Usuário ou senha incorretos');
     }
   };
 
@@ -89,15 +64,15 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#41414A', // Fundo da tela
+    backgroundColor: '#41414A',
     justifyContent: 'center',
     padding: 16,
   },
   logo: {
-    width: 100, // Ajuste o tamanho do logo conforme necessário
+    width: 100,
     height: 110,
     alignSelf: 'center',
-    marginBottom: 100, // Espaço entre o logo e os campos de entrada
+    marginBottom: 100,
   },
   input: {
     height: 40,
@@ -105,8 +80,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 16,
     paddingHorizontal: 8,
-    backgroundColor: '#FFFFFF', // Cor dos campos de entrada
-    color: '#000000', // Cor do texto dentro dos campos
+    backgroundColor: '#FFFFFF',
+    color: '#000000',
   },
   errorText: {
     color: 'red',
@@ -114,13 +89,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    backgroundColor: '#F03C25', // Cor do botão
+    backgroundColor: '#F03C25',
     padding: 12,
     borderRadius: 5,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#FFFFFF', // Cor do texto do botão
+    color: '#FFFFFF',
     fontSize: 16,
   },
 });

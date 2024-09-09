@@ -1,11 +1,12 @@
 // App.js
-import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import DrawerNavigator from './navigators/DrawerNavigator';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import TabNavigator from './navigators/TabNavigator'; // Atualize o import
 import LoginScreen from './screens/LoginScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -42,7 +43,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {isLoggedIn ? (
-          <Stack.Screen name="App" component={DrawerNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="App" component={TabNavigator} options={{ headerShown: false }} />
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         )}
