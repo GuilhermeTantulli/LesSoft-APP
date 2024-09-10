@@ -9,27 +9,27 @@ const solutions = [
   { 
     name: 'Plusoft para Recursos Humanos', 
     description: 'Capacite com a EDTech número 1 do país', 
-    image: require('../assets/omni-crm-solution-icon.png') 
+    image: require('../assets/rh-solution-icon.png') 
   },
   { 
     name: 'Plusoft para Marketing', 
     description: 'Aprimore suas estratégias e engajamento com soluções digitais inovadoras', 
-    image: require('../assets/omni-crm-solution-icon.png') 
+    image: require('../assets/mkt-solution-icon.png') 
   },
   { 
     name: 'Plusoft para Financeiro', 
     description: 'Automatize e gerencie suas finanças com eficiência e precisão', 
-    image: require('../assets/omni-crm-solution-icon.png') 
+    image: require('../assets/finance-solution-icon.png') 
   },
   { 
     name: 'Plusoft para Atendimento ao Público', 
     description: 'Melhore a experiência do cliente com atendimento ágil e personalizado', 
-    image: require('../assets/omni-crm-solution-icon.png') 
+    image: require('../assets/client-solution-icon.png') 
   },
   { 
     name: 'Plusoft para TI', 
     description: 'Transforme sua infraestrutura com tecnologias seguras e escaláveis', 
-    image: require('../assets/omni-crm-solution-icon.png') 
+    image: require('../assets/it-solution-icon.png') 
   },
 ];
 
@@ -41,7 +41,7 @@ function SolutionsScreen() {
           source={require('../assets/LesSoft-logo-no-text.png')}
           style={styles.icon}
         />
-        <Text style={styles.bannerText}>Conheça nossas soluções atuais para o mercado</Text>
+        <Text style={styles.bannerText}>Conheça nossas soluções para o mercado</Text>
       </View>
       <View style={styles.carouselWrapper}>
         <Carousel
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 245,
-    height: 354,
+    height: 250,
     backgroundColor: '#444',
     borderRadius: 10,
     borderWidth: 2,
@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardImage: {
-    width: '80%',
-    height: '80%',
+    width: 250, // Largura da imagem
+    height: 151, // Altura da imagem
     resizeMode: 'cover',
   },
   cardContent: {
