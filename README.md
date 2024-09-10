@@ -35,3 +35,15 @@ Usuário: teste
 ```
 Senha: teste123
 ```
+
+Após logar, deve ser exibida uma mensagem no log do app:
+
+```
+Login bem-sucedido, navegando para tela Home..
+```
+
+No logout, deve ser exibida a mensagem:
+
+```
+Logout bem-sucedido, voltando para tela de Login...
+```
