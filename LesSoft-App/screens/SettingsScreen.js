@@ -7,13 +7,13 @@ const SettingsScreen = ({ navigation }) => {
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem('authToken');
+      console.log('Logout bem-sucedido, navegando para Login');
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Login' }],
+        routes: [{ name: 'Login' }], // Navega para a tela de login após o logout
       });
     } catch (error) {
-      console.error(error);
-      // Handle logout error
+      console.error('Erro ao fazer logout', error);
     }
   };
 

@@ -5,30 +5,27 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'reac
 const logo = require('../assets/LesSoft-logo.png');
 
 const LoginScreen = ({ navigation }) => {
-  // Estados para armazenar usuário, senha e mensagem de erro
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async () => {
-    setErrorMessage(''); // Reseta a mensagem de erro
+    setErrorMessage('');
 
-    // Validação simples das credenciais
     if (user === 'teste' && password === 'teste123') {
       try {
-        // Simula um token de autenticação
         const token = 'mockedAuthToken';
-
-        // Salva o token no AsyncStorage
         await AsyncStorage.setItem('authToken', token);
 
-        // Navegar para a tela principal
+        console.log('Login bem-sucedido, navegando para Main');
+
         navigation.reset({
           index: 0,
-          routes: [{ name: 'App' }],
+          routes: [{ name: 'Main' }], // Certifique-se de que 'Main' corresponde ao nome da tela principal no StackNavigator
         });
       } catch (error) {
         console.error('Erro ao salvar o token', error);
+        setErrorMessage('Erro ao realizar login. Tente novamente.');
       }
     } else {
       setErrorMessage('Usuário ou senha incorretos');
