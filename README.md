@@ -30,10 +30,13 @@ Para inicializar o projeto:
 npm start
 ```
 
-Credenciais para Login:
+### Credenciais para Login:
+Usuário:
 ```
-Usuário: teste
+teste
 ```
+
+Senha:
 ```
-Senha: teste123
+teste123
 ```
