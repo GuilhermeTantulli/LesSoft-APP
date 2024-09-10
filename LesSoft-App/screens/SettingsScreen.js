@@ -1,13 +1,13 @@
+import { Ionicons } from '@expo/vector-icons'; // Certifique-se de ter o @expo/vector-icons instalado
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Certifique-se de ter o @expo/vector-icons instalado
 
 const SettingsScreen = ({ navigation }) => {
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem('authToken');
-      console.log('Logout bem-sucedido, navegando para Login');
+      console.log('Logout bem-sucedido, voltando para tela de Login...');
       navigation.reset({
         index: 0,
         routes: [{ name: 'Login' }], // Navega para a tela de login após o logout

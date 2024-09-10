@@ -17,7 +17,7 @@ const LoginScreen = ({ navigation }) => {
         const token = 'mockedAuthToken';
         await AsyncStorage.setItem('authToken', token);
 
-        console.log('Login bem-sucedido, navegando para Main');
+        console.log('Login bem-sucedido, navegando para tela Home...');
 
         navigation.reset({
           index: 0,
@@ -61,7 +61,7 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#41414A',
+    backgroundColor: '#333',
     justifyContent: 'center',
     padding: 16,
   },
