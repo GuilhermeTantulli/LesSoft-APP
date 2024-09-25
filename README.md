@@ -47,12 +47,12 @@ teste123
 ### AsyncStorage
 O componente *AsyncStorage* é utilizado para a camada de login do app. Não foi desenvolvida uma tela de cadastro para que o controle fosse feito com uma validação simples de *if/else* o que facilita testes de navegaçao e geração de token (validação do *AsyncStorage*).
 
-### Navigation
+### TabNavigation
 No APP da LesSoft utilizamos a navegação em *Tab's* ou *TabNavigation*. Esse tipo de navegação é mais moderno, mais clean, e comporta melhor componentes em tela para APP's (vide exemplos como Facebook e Instagram).
 
 Nessa navegação existe o controle do que é exibido em cada página **após** login, que é controlado pelo componente acima.
 
-### Stack Navigation
+### Stack Navigation ou AppNavigation
 Nossa *StackNavigation* controla a entrada e saída da *TabNavigation*. Isso quer dizer que ela da um *SET* para a *HomeScreen* como tela *MAIN* e um *SET* para a *LoginScreen* como *LOGIN*.
 
 Assim, ao abrir o app você é redirecionado de maneira padrão para a tela de *LOGIN* e ao logar com as credenciais é redirecionado para a *MAIN* que é a *HomeScreen*.
