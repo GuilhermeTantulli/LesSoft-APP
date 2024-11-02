@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import { getAuth, initializeAuth, EmailAuthProvider, getReactNativePersistence } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { getFirestore } from 'firebase/firestore';
 
@@ -23,5 +23,5 @@ const auth = initializeAuth(app, {
 
 const firestore = getFirestore(app);
 
-export { auth, firestore }; // Exporta o objeto de autenticação
-
+// Exporta o objeto de autenticação e o provedor de autenticação
+export { auth, EmailAuthProvider, firestore };

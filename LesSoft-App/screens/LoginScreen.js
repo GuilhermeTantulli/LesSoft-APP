@@ -1,7 +1,7 @@
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { auth } from '../Firebase.ts';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const logo = require('../assets/LesSoft-logo.png');
 
@@ -45,8 +45,13 @@ const LoginScreen = ({ navigation }) => {
         placeholderTextColor="#B0B0B0"
       />
       {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ForgotPassword')}>
+        <Text style={styles.buttonText}>Esqueci minha senha</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
@@ -94,11 +99,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: 'bold'
   },
   linkText: {
     color: '#FFFFFF',
     textAlign: 'center',
     marginTop: 20,
+    fontSize: 15,
+    fontWeight: 'bold'
   },
 });
 

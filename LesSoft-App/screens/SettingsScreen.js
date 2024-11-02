@@ -61,6 +61,20 @@ const SettingsScreen = ({ navigation }) => {
         >
           <Text style={styles.optionText}>Central de Ajuda</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.option}
+          onPress={() => navigation.navigate('ChangePassword')}
+        >
+          <Text style={styles.optionText}>Redefinir Senha</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.optionExcluir}
+          onPress={() => navigation.navigate('DeleteAccount')}
+        >
+          <Text style={styles.optionText}>Excluir Conta</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Botão de logout */}
@@ -106,6 +120,12 @@ const styles = StyleSheet.create({
   },
   option: {
     backgroundColor: '#444',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  optionExcluir: {
+    backgroundColor: '#FF0000',
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,
