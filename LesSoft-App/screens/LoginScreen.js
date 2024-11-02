@@ -1,6 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { auth } from '../Firebase.ts';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const logo = require('../assets/LesSoft-logo.png');
 
@@ -12,22 +13,15 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = async () => {
     setErrorMessage('');
 
-    if (user === 'teste' && password === 'teste123') {
-      try {
-        const token = 'mockedAuthToken';
-        await AsyncStorage.setItem('authToken', token);
+    try {
+      await signInWithEmailAndPassword(auth, user, password);
+      console.log('Login bem-sucedido!');
 
-        console.log('Login bem-sucedido, navegando para tela Home...');
-
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'Main' }], // Certifique-se de que 'Main' corresponde ao nome da tela principal no StackNavigator
-        });
-      } catch (error) {
-        console.error('Erro ao salvar o token', error);
-        setErrorMessage('Erro ao realizar login. Tente novamente.');
-      }
-    } else {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Main' }],
+      });
+    } catch (error) {
       setErrorMessage('Usuário ou senha incorretos');
     }
   };
@@ -54,6 +48,10 @@ const LoginScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <Text style={styles.linkText}>Não tem uma conta? Cadastre-se</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -69,14 +67,15 @@ const styles = StyleSheet.create({
     width: 100,
     height: 110,
     alignSelf: 'center',
-    marginBottom: 100,
+    marginBottom: 50,
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
-    borderBottomWidth: 1,
+    height: 50,
+    borderColor: '#B0B0B0',
+    borderWidth: 1,
+    borderRadius: 5,
     marginBottom: 16,
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     backgroundColor: '#FFFFFF',
     color: '#000000',
   },
@@ -90,10 +89,16 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 5,
     alignItems: 'center',
+    marginTop: 10,
   },
   buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
+  },
+  linkText: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 
