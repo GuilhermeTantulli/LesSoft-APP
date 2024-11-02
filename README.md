@@ -2,44 +2,32 @@
 App desenvolvido para o projeto LesSoft - FIAP
 
 ## Sumário
-- [Integrantes;](#integrantes)
-- [Instruções para uso da aplicação;](#instruções-para-uso-da-aplicação)
-- [Componentes do Projeto.](#componentes-do-projeto)
+- [Integrantes](#integrantes)
+- [Instruções para uso da aplicação](#instruções-para-uso-da-aplicação)
+- [Componentes do Projeto](#componentes-do-projeto)
+- [Telas do Aplicativo](#telas-do-aplicativo)
 
 ## Integrantes
-- Beatriz Lucas - RM99104;
-- Enzo Farias - RM98792;
-- Ewerton Gonçalves - RM98571;
-- Guilherme Tantulli - RM97890;
-- Thiago Zupelli - RM99085.
+- Beatriz Lucas - RM99104
+- Enzo Farias - RM98792
+- Ewerton Gonçalves - RM98571
+- Guilherme Tantulli - RM97890
+- Thiago Zupelli - RM99085
 
 ## Instruções para uso da aplicação
 ### Iniciando a Aplicação
 
-Após, rodar:
-```
+Após clonar o repositório, rode os seguintes comandos:
+```bash
 cd lessoft-app
 ```
-
 Em sequência:
-```
+```bash
 npm install
 ```
-
-Para inicializar o projeto:
-```
-npm start
-```
-
-### Credenciais para Login:
-Usuário:
-```
-teste
-```
-
-Senha:
-```
-teste123
+Para inicializar o projeto, execute:
+```bash
+npx expo start
 ```
 
 ## Componentes do Projeto:
@@ -140,3 +128,38 @@ const renderCarouselItem = ({ item }) => (
           />
         </View>
 ```
+
+## Métodos do Firebase Utilizados
+No projeto, utilizamos os seguintes métodos do Firebase:
+### initializeApp:
+Inicializa o Firebase com as configurações fornecidas.
+### getAuth:
+Obtém a instância do serviço de autenticação do Firebase.
+### initializeAuth:
+Inicializa o serviço de autenticação com persistência, usando o AsyncStorage.
+### getReactNativePersistence:
+Define a persistência do AsyncStorage para o gerenciamento da autenticação.
+### getFirestore:
+Obtém a instância do Firestore para operações de banco de dados.
+
+## Telas do Aplicativo
+### SignupScreen:
+Tela onde o usuário pode se registrar criando uma nova conta, inserindo email e senha.
+### LoginScreen:
+Tela de entrada do aplicativo onde o usuário insere suas credenciais (login e senha) para acessar o sistema.
+### ForgotPasswordScreen:
+Tela onde o usuário pode solicitar a redefinição da senha, inserindo seu email para receber um link de recuperação.
+### HomeScreen:
+Tela principal do aplicativo, apresentando informações e recursos disponíveis após o login, incluindo o carrossel mencionado.
+### AboutUsScreen:
+Tela que apresenta informações sobre a empresa e o projeto LesSoft.
+### ProductsScreen:
+Tela que lista todos os produtos oferecidos pela LesSoft, apresentando detalhes e informações relevantes.
+### SolutionsScreen:
+Tela dedicada a exibir as soluções fornecidas pela LesSoft, também com um carrossel para interação.
+### SettingsScreen:
+Tela de configurações onde o usuário pode gerenciar suas opções de conta, como deletar o token de autenticação e acessar informações sobre o aplicativo.
+### ChangePasswordScreen:
+Tela onde o usuário pode solicitar a troca de sua senha, inserindo a nova senha e confirmando a alteração.
+### AccountDeleteScreen:
+Tela onde o usuário pode solicitar a exclusão de sua conta, recebendo um aviso sobre as consequências dessa ação.
