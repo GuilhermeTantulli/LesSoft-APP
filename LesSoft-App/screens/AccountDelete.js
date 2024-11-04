@@ -1,26 +1,43 @@
 import React, { useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import { auth } from '../Firebase'; // Certifique-se de importar o auth corretamente
+import { auth } from '../Firebase'; 
 
 const logo = require('../assets/LesSoft-logo.png');
 
 const AccountDeleteScreen = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleDeleteAccount = async () => {
-    setErrorMessage('');
-
-    try {
-      const user = auth.currentUser;
-      if (user) {
-        await user.delete(); // Método para deletar a conta do usuário
-        Alert.alert('Conta deletada', 'Sua conta foi deletada com sucesso.');
-        navigation.navigate('Login'); // Navega de volta para a tela de login após deletar a conta
-      }
-    } catch (error) {
-      console.error('Erro ao deletar conta', error);
-      setErrorMessage('Erro ao deletar a conta. Tente novamente.');
-    }
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      'Confirmar Exclusão de Conta',
+      'Tem certeza de que deseja deletar sua conta? Esta ação é irreversível.',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => console.log('Exclusão de conta cancelada'),
+          style: 'cancel',
+        },
+        {
+          text: 'Confirmar',
+          onPress: async () => {
+            setErrorMessage('');
+  
+            try {
+              const user = auth.currentUser;
+              if (user) {
+                await user.delete();
+                Alert.alert('Conta deletada', 'Sua conta foi deletada com sucesso.');
+                navigation.navigate('Login'); // Navega de volta para a tela de login após deletar a conta
+              }
+            } catch (error) {
+              console.error('Erro ao deletar conta', error);
+              setErrorMessage('Erro ao deletar a conta. Tente novamente.');
+            }
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   return (
@@ -34,7 +51,7 @@ const AccountDeleteScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleDeleteAccount}>
         <Text style={styles.buttonText}>Deletar Conta</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Configurações')}>
         <Text style={styles.linkText}>Cancelar</Text>
       </TouchableOpacity>
     </View>

@@ -1,6 +1,6 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, initializeAuth, EmailAuthProvider, getReactNativePersistence } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+import { initializeApp } from 'firebase/app';
+import { EmailAuthProvider, getReactNativePersistence, initializeAuth, updatePassword } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -24,4 +24,4 @@ const auth = initializeAuth(app, {
 const firestore = getFirestore(app);
 
 // Exporta o objeto de autenticação e o provedor de autenticação
-export { auth, EmailAuthProvider, firestore };
+export { auth, EmailAuthProvider, firestore, updatePassword };

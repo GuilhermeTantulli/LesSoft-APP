@@ -1,20 +1,37 @@
-import { Ionicons } from '@expo/vector-icons'; // Certifique-se de ter o @expo/vector-icons instalado
+import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const SettingsScreen = ({ navigation }) => {
-  const handleLogout = async () => {
-    try {
-      await AsyncStorage.removeItem('authToken');
-      console.log('Logout bem-sucedido, voltando para tela de Login...');
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Login' }], // Navega para a tela de login após o logout
-      });
-    } catch (error) {
-      console.error('Erro ao fazer logout', error);
-    }
+  const handleLogout = () => {
+    Alert.alert(
+      'Confirmar Logout',
+      'Você tem certeza de que deseja sair?',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => console.log('Logout cancelado'),
+          style: 'cancel',
+        },
+        {
+          text: 'Confirmar',
+          onPress: async () => {
+            try {
+              await AsyncStorage.removeItem('authToken');
+              console.log('Logout bem-sucedido, voltando para tela de Login...');
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'Login' }],
+              });
+            } catch (error) {
+              console.error('Erro ao fazer logout', error);
+            }
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   const showAlert = (title, message) => {
@@ -36,14 +53,14 @@ const SettingsScreen = ({ navigation }) => {
       <View style={styles.buttonList}>
         <TouchableOpacity 
           style={styles.option}
-          onPress={() => showAlert('Versão', '1.0.0')}
+          onPress={() => showAlert('Versão', '1.1.0')}
         >
           <Text style={styles.optionText}>Versão</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.option}
-          onPress={() => showAlert('Política de Privacidade', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
+          onPress={() => showAlert('Política de Privacidade', 'A LesSoft valoriza a privacidade e segurança dos dados dos seus usuários.')}
         >
           <Text style={styles.optionText}>Política de Privacidade</Text>
         </TouchableOpacity>
@@ -125,7 +142,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   optionExcluir: {
-    backgroundColor: '#FF0000',
+    backgroundColor: 'rgba(255, 0, 0, 0.5)',
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,

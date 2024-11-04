@@ -45,15 +45,17 @@ const LoginScreen = ({ navigation }) => {
         placeholderTextColor="#B0B0B0"
       />
       {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
-
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ForgotPassword')}>
-        <Text style={styles.buttonText}>Esqueci minha senha</Text>
-      </TouchableOpacity>
-
+  
+      <View style={styles.buttonRow}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Fazer Login</Text>
+        </TouchableOpacity>
+  
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ForgotPassword')}>
+          <Text style={styles.buttonText}>Esqueci a Senha</Text>
+        </TouchableOpacity>
+      </View>
+  
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.linkText}>Não tem uma conta? Cadastre-se</Text>
       </TouchableOpacity>
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
     borderColor: '#B0B0B0',
     borderWidth: 1,
     borderRadius: 5,
-    marginBottom: 16,
+    marginBottom: 10,
     paddingHorizontal: 10,
     backgroundColor: '#FFFFFF',
     color: '#000000',
@@ -89,17 +91,25 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: 'center',
   },
+  buttonRow: {
+    flexDirection: 'row', // Coloca os botões em linha
+    justifyContent: 'space-between', // Espaça os botões igualmente
+    marginTop: 10,
+  },
   button: {
     backgroundColor: '#F03C25',
     padding: 12,
     borderRadius: 5,
     alignItems: 'center',
-    marginTop: 10,
+    flex: 1, // Faz os botões ocuparem o mesmo espaço
+    marginHorizontal: 5, // Adiciona um espaço entre os botões
+    justifyContent: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alignItems: 'center'
   },
   linkText: {
     color: '#FFFFFF',
@@ -109,5 +119,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 });
+
 
 export default LoginScreen;

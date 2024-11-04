@@ -1,40 +1,42 @@
 import React, { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { auth } from '../Firebase'; // Certifique-se de importar o auth corretamente
+import { auth, updatePassword } from '../Firebase';
 
 const logo = require('../assets/LesSoft-logo.png');
 
 const ChangePasswordScreen = ({ navigation }) => {
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-  
-    const handleChangePassword = async () => {
-      setErrorMessage('');
-  
-      if (!newPassword || !confirmPassword) {
-        setErrorMessage('Por favor, insira a nova senha e confirme-a.');
-        return;
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChangePassword = async () => {
+    setErrorMessage('');
+
+    if (!newPassword || !confirmPassword) {
+      setErrorMessage('Por favor, insira a nova senha e confirme-a.');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setErrorMessage('As senhas não coincidem. Tente novamente.');
+      return;
+    }
+
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        // Atualiza a senha do usuário autenticado
+        await updatePassword(user, newPassword);
+        Alert.alert('Sucesso!', 'Sua senha foi alterada com sucesso.');
+        navigation.navigate('Configurações');
+      } else {
+        setErrorMessage('Usuário não autenticado. Faça login novamente.');
       }
-  
-      if (newPassword !== confirmPassword) {
-        setErrorMessage('As senhas não coincidem. Tente novamente.');
-        return;
-      }
-  
-      try {
-        // Obter o usuário atual
-        const user = auth.currentUser;
-        if (user) {
-          await user.updatePassword(newPassword);
-          Alert.alert('Sucesso!', 'Sua senha foi alterada com sucesso.');
-          navigation.navigate('Settings'); // Navega de volta para a tela de configurações
-        }
-      } catch (error) {
-        console.error('Erro ao trocar a senha', error);
-        setErrorMessage('Erro ao trocar a senha. Tente novamente.');
-      }
-    };
+    } catch (error) {
+      console.error('Erro ao trocar a senha', error);
+      setErrorMessage('Erro ao trocar a senha. Tente novamente.');
+    }
+  };
   
     return (
       <View style={styles.container}>
